@@ -83,7 +83,7 @@ function StepSequencer() {
   return (
     <div className="akaiShadow col-span-2 row-span-2 h-fit w-fit items-center justify-between rounded-lg bg-[#D1D2C4] p-5 outline outline-2">
       <div className="flex w-full items-center justify-between gap-8 py-2">
-        <h2 className="akaiShadow rounded-lg bg-black bg-opacity-10 px-2 text-xl font-extrabold tracking-tighter text-customRed outline outline-1 outline-offset-1 outline-black md:text-3xl">
+        <h2 className="akaiShadow rounded-lg bg-black bg-opacity-10 px-2 text-xl font-extrabold tracking-tighter text-custom-red outline outline-1 outline-offset-1 outline-black md:text-3xl">
           04 BEATMAKER
         </h2>
         <div className="flex flex-col gap-2 md:flex-row">
@@ -99,18 +99,18 @@ function StepSequencer() {
           </div>
           <button
             onClick={handlePlay}
-            className="akaiShadow rounded-lg bg-customRed px-1 text-customWhite"
+            className="akaiShadow rounded-lg bg-custom-red px-1 text-custom-white"
           >
             {!play ? 'Play' : 'Pause'}
           </button>
         </div>
       </div>
       <div className="my-1 flex justify-center gap-2 md:gap-4">
-        <div className="flex flex-col justify-evenly gap-2 rounded-lg bg-customRed p-2">
+        <div className="flex flex-col justify-evenly gap-2 rounded-lg bg-custom-red p-2">
           {['Hat', 'Snare', 'Kick', 'Bongo'].map((drum, i) => (
             <h5
               key={i}
-              className="akaiShadow rounded-md bg-customPurple px-1 text-center text-sm md:text-lg"
+              className="akaiShadow rounded-md bg-custom-purple px-1 text-center text-sm md:text-lg"
             >
               {drum}
             </h5>

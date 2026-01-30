@@ -1,10 +1,9 @@
-const nextConfig = {
-  reactStrictMode: true,
-};
+import type { NextConfig } from 'next';
 
-module.exports = {
-  ...nextConfig,
-  webpack(config, options) {
+const nextConfig: NextConfig = {
+  reactStrictMode: true,
+  output: 'standalone',
+  webpack(config) {
     config.module.rules.push({
       test: /\.(mp3)$/i,
       type: 'asset/resource',
@@ -12,7 +11,6 @@ module.exports = {
         filename: 'static/sounds/[name].[hash][ext]',
       },
     });
-
     return config;
   },
   images: {
@@ -20,9 +18,10 @@ module.exports = {
       {
         protocol: 'https',
         hostname: 'res.cloudinary.com',
-        port: '',
         pathname: '/ddhal4lbv/**',
       },
     ],
   },
 };
+
+export default nextConfig;

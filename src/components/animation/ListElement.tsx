@@ -1,5 +1,5 @@
 import { useRef } from 'react';
-import { motion, useInView, stagger } from 'framer-motion';
+import { motion, useInView } from 'framer-motion';
 
 interface ListElementProps {
   style: string;
@@ -18,7 +18,7 @@ function ListElement({ style, children }: ListElementProps) {
       x: 0,
       opacity: 1,
       transition: {
-        type: 'easeInOut',
+        ease: 'easeInOut' as const,
         duration: 0.5,
       },
     },

@@ -9,12 +9,12 @@ import dynamic from 'next/dynamic';
 
 interface HomeProps {
   handleRoute: Routes['handleRoute'];
-  pageRef: React.RefObject<HTMLDivElement>;
-  frontpageRef: React.RefObject<HTMLDivElement>;
-  aboutRef: React.RefObject<HTMLDivElement>;
-  workRef: React.RefObject<HTMLDivElement>;
-  contactRef: React.RefObject<HTMLDivElement>;
-  beatRef: React.RefObject<HTMLDivElement>;
+  pageRef: React.RefObject<HTMLDivElement | null>;
+  frontpageRef: React.RefObject<HTMLDivElement | null>;
+  aboutRef: React.RefObject<HTMLDivElement | null>;
+  workRef: React.RefObject<HTMLDivElement | null>;
+  contactRef: React.RefObject<HTMLDivElement | null>;
+  beatRef: React.RefObject<HTMLDivElement | null>;
 }
 
 const BeatmakerDynamic = dynamic(() => import('@/components/StepSequencer'), {
@@ -68,14 +68,14 @@ function Home({
         className="flex min-h-screen w-full items-center justify-end "
       >
         <div className="flex h-fit w-full flex-col items-end justify-end">
-          <h1 className="text-lg font-extrabold text-customLightPink">
+          <h1 className="text-lg font-extrabold text-custom-light-pink">
             {headers[index]}
           </h1>
           <div className=" w-fit">
             <NameSvgDynamic />
           </div>
 
-          <h5 className="w-1/2 text-right text-xl text-customLightPink">
+          <h5 className="w-1/2 text-right text-xl text-custom-light-pink">
             Data, Design, and Technology
           </h5>
         </div>
@@ -94,7 +94,7 @@ function Home({
                 duration: 1,
               },
             }}
-            className="w-full rounded-lg bg-customRed bg-opacity-90 p-2"
+            className="w-full rounded-lg bg-custom-red bg-opacity-90 p-2"
           >
             <h5 className="text-3xl">01</h5>
             <h1 className="underline-black p-5 text-5xl font-bold decoration-black decoration-double decoration-2">
@@ -111,7 +111,7 @@ function Home({
         itemRef={workRef}
         style="flex w-full flex-col items-center rounded-lg py-20"
       >
-        <div className="w-full rounded-lg bg-customRoyalBlue py-10 px-5">
+        <div className="w-full rounded-lg bg-custom-royal-blue py-10 px-5">
           <h5 className="text-3xl ">02</h5>
           <h1 className="underline-black p-10 text-5xl underline decoration-black decoration-double decoration-2">
             WORK
@@ -123,14 +123,14 @@ function Home({
       <Header
         id="contact"
         itemRef={contactRef}
-        style="my-10 w-full rounded-lg bg-customBlue bg-opacity-90 p-10"
+        style="my-10 w-full rounded-lg bg-custom-blue bg-opacity-90 p-10"
       >
         <h5 className="text-3xl">03</h5>
         <h1 className="underline-black p-10 text-5xl underline decoration-black decoration-double decoration-2">
           CONTACT
         </h1>
         <div className="flex flex-col pt-5 md:p-10">
-          <div className="rounded-lg bg-customBlack bg-opacity-10 p-5">
+          <div className="rounded-lg bg-custom-black bg-opacity-10 p-5">
             <CopyEmail />
           </div>
           <div className="pt-5">
@@ -140,7 +140,7 @@ function Home({
                 href="https://github.com/samuelho-dev"
                 aria-label="github"
                 target="_blank"
-                className="text-2xl text-customWhite underline decoration-customBlack underline-offset-4"
+                className="text-2xl text-custom-white underline decoration-custom-black underline-offset-4"
               >
                 LinkedIn
               </a>
@@ -148,7 +148,7 @@ function Home({
                 href="https://www.linkedin.com/in/samuelho7/"
                 aria-label="linkedin"
                 target="_blank"
-                className="text-2xl text-customWhite underline decoration-customBlack underline-offset-4"
+                className="text-2xl text-custom-white underline decoration-custom-black underline-offset-4"
               >
                 Github
               </a>
@@ -160,7 +160,7 @@ function Home({
       <Header
         id="beat"
         itemRef={beatRef}
-        style="flex w-full  flex-col items-center rounded-lg bg-customPurple py-20  md:p-20"
+        style="flex w-full  flex-col items-center rounded-lg bg-custom-purple py-20  md:p-20"
       >
         <BeatmakerDynamic />
       </Header>

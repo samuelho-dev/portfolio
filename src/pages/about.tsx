@@ -1,14 +1,13 @@
 import Image from 'next/image';
 import React from 'react';
 import Link from 'next/link';
-import { TbBrandMongodb } from 'react-icons/tb';
+import { TbBrandMongodb, TbDeviceAudioTape } from 'react-icons/tb';
 import { IoLogoNodejs } from 'react-icons/io';
 import { FaAws } from 'react-icons/fa';
 import {
   SiTypescript,
   SiPostgresql,
   SiNextdotjs,
-  SiAbletonlive,
   SiBlender,
   SiAdobe,
   SiReact,
@@ -20,7 +19,7 @@ function About() {
   return (
     <section className="flex flex-col items-center justify-center px-2">
       <div className="flex w-full flex-col items-center justify-center gap-4 md:w-3/4 xl:flex-row">
-        <div className="w-fit bg-customLightPink hover:bg-none">
+        <div className="w-fit bg-custom-light-pink hover:bg-none">
           <div className="mix-blend-darken grayscale filter hover:filter-none">
             <Image
               src="https://res.cloudinary.com/ddhal4lbv/image/upload/v1679961213/Portfolio/525F8B4C-5303-4E2E-B816-A605BB0455A7_1_105_c_ordpsi.jpg"
@@ -46,14 +45,14 @@ function About() {
             <a
               href="https://github.com/samuelho-dev"
               target="_blank"
-              className="hover:border-customYtext-customYellow border-b-2 border-transparent text-customYellow transition duration-300"
+              className="hover:border-customYtext-custom-yellow border-b-2 border-transparent text-custom-yellow transition duration-300"
             >
               github
             </a>
             , and if you are a recruiter click{' '}
             <Link
               href={'/Resume_SamuelHo.docx'}
-              className="hover:border-customYtext-customYellow border-b-2 border-transparent text-customYellow transition duration-300"
+              className="hover:border-customYtext-custom-yellow border-b-2 border-transparent text-custom-yellow transition duration-300"
               download={'/Resume_SamuelHo.docx'}
             >
               here
@@ -61,7 +60,7 @@ function About() {
             for my resume and my email is{' '}
             <a
               href="#contact"
-              className="hover:border-customYtext-customYellow border-b-2 border-transparent text-customYellow transition duration-300"
+              className="hover:border-customYtext-custom-yellow border-b-2 border-transparent text-custom-yellow transition duration-300"
             >
               samuelho343@gmail.com
             </a>
@@ -106,7 +105,7 @@ function About() {
               <sub>Flask</sub>
             </li>
             <li className="flex items-center gap-2">
-              <SiAbletonlive />
+              <TbDeviceAudioTape />
               <sub>Ableton</sub>
             </li>
             <li className="flex items-center gap-2">

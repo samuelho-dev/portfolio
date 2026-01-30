@@ -3,7 +3,7 @@ import { motion, useInView } from 'framer-motion';
 
 interface HeaderProps {
   id: string;
-  itemRef: React.RefObject<HTMLDivElement>;
+  itemRef: React.RefObject<HTMLDivElement | null>;
   style: string;
   children: any;
 }
@@ -19,7 +19,7 @@ function Header({ id, itemRef, style, children }: HeaderProps) {
       y: -10,
       opacity: 1,
       transition: {
-        type: 'spring',
+        type: 'spring' as const,
         bounce: 0.2,
         duration: 1,
       },

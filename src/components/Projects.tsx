@@ -65,7 +65,7 @@ function Projects() {
   return (
     <section className="flex w-full flex-col items-center gap-40">
       <div className="flex w-full flex-col items-center">
-        <h2 className="w-full font-bold text-customWhite">Projects</h2>
+        <h2 className="w-full font-bold text-custom-white">Projects</h2>
         <ul className="flex max-w-6xl flex-col items-center gap-10">
           {featuredProjects.map((project, i) => (
             <li
@@ -76,7 +76,7 @@ function Projects() {
             >
               <ProjectContainer
                 bool={i % 2 !== 0}
-                style={`z-0 w-fit bg-customWhite hover:bg-none ${
+                style={`z-0 w-fit bg-custom-white hover:bg-none ${
                   i % 2 !== 0 && 'xl:ml-[-10%]'
                 }`}
               >
@@ -108,25 +108,25 @@ function Projects() {
                     className="cursor-pointer"
                     target="_blank"
                   >
-                    <h1 className=" font-bold text-customWhite hover:text-opacity-80">
+                    <h1 className=" font-bold text-custom-white hover:text-opacity-80">
                       {project.name}
                     </h1>
                   </a>
                   <a href={project.source} target="_blank">
-                    <FiLink className="text-customGreen" />
+                    <FiLink className="text-custom-green" />
                   </a>
                 </div>
 
                 <p
-                  className={`flex text-customWhite opacity-60 ${
+                  className={`flex text-custom-white opacity-60 ${
                     i % 2 === 0 && 'justify-end '
                   }`}
                 >
                   {project.role}
                 </p>
-                <div className="bg-customGreen bg-opacity-80 p-2">
+                <div className="bg-custom-green bg-opacity-80 p-2">
                   <p
-                    className={`text-customWhite ${
+                    className={`text-custom-white ${
                       i % 2 === 0 && 'text-right'
                     }`}
                   >
@@ -142,7 +142,7 @@ function Projects() {
                   {project.technologies.map((tech, k) => (
                     <div key={k} className={`flex items-center gap-2 pt-4`}>
                       <div>{iconmap[tech]}</div>
-                      <sub className=" text-customWhite md:whitespace-nowrap">
+                      <sub className=" text-custom-white md:whitespace-nowrap">
                         {tech}
                       </sub>
                     </div>
@@ -154,7 +154,7 @@ function Projects() {
         </ul>
       </div>
       <div className="flex w-full flex-col items-center gap-2">
-        <h5 className="w-full font-bold text-customWhite">Other Projects</h5>
+        <h5 className="w-full font-bold text-custom-white">Other Projects</h5>
         <div className="max-w-6xl">
           {otherProjects.map((project, i) => (
             <a
@@ -163,10 +163,10 @@ function Projects() {
               target="_blank"
               className="flex w-full"
             >
-              <div className="tileShadow m-2 flex w-full cursor-pointer flex-col justify-between bg-customRoyalBlue p-2">
+              <div className="tileShadow m-2 flex w-full cursor-pointer flex-col justify-between bg-custom-royal-blue p-2">
                 <div className="flex items-center gap-2">
                   <div>{iconmap.Plus}</div>
-                  <h5 className="w-fit border-b-2 border-transparent  transition duration-300 hover:border-customBlack">
+                  <h5 className="w-fit border-b-2 border-transparent  transition duration-300 hover:border-custom-black">
                     {project.name}
                   </h5>
                 </div>
@@ -175,7 +175,7 @@ function Projects() {
                   {project.technologies.map((tech, j) => (
                     <div key={j} className={`flex items-center gap-2 pt-4`}>
                       <div>{iconmap[tech]}</div>
-                      <sub className="text-customWhite">{tech}</sub>
+                      <sub className="text-custom-white">{tech}</sub>
                     </div>
                   ))}
                 </div>

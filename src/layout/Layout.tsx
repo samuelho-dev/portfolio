@@ -6,12 +6,12 @@ import React from 'react';
 interface LayoutProps {
   children: any;
   handleRoute: Routes['handleRoute'];
-  pageRef: React.RefObject<HTMLDivElement>;
-  frontpageRef: React.RefObject<HTMLDivElement>;
-  aboutRef: React.RefObject<HTMLDivElement>;
-  workRef: React.RefObject<HTMLDivElement>;
-  contactRef: React.RefObject<HTMLDivElement>;
-  beatRef: React.RefObject<HTMLDivElement>;
+  pageRef: React.RefObject<HTMLDivElement | null>;
+  frontpageRef: React.RefObject<HTMLDivElement | null>;
+  aboutRef: React.RefObject<HTMLDivElement | null>;
+  workRef: React.RefObject<HTMLDivElement | null>;
+  contactRef: React.RefObject<HTMLDivElement | null>;
+  beatRef: React.RefObject<HTMLDivElement | null>;
 }
 
 export default function Layout({

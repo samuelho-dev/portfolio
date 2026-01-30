@@ -1,38 +1,36 @@
 {
-  "name": "my-app",
+  "name": "portfolio",
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
+    "dev": "next dev --turbopack",
     "build": "next build",
     "start": "next start",
     "lint": "next lint"
   },
   "dependencies": {
-    "@heroicons/react": "^2.0.16",
-    "@types/node": "^18.15.5",
-    "@types/nodemailer": "^6.4.7",
-    "@types/react": "^18.0.28",
-    "@types/react-dom": "18.0.11",
-    "@types/three": "^0.149.0",
-    "autoprefixer": "^10.4.14",
-    "dotenv": "^16.0.3",
-    "eslint": "^8.36.0",
-    "eslint-config-next": "13.2.4",
-    "framer-motion": "^10.13.1",
-    "next": "13.2.4",
-    "nodemailer": "^6.9.1",
-    "react": "18.2.0",
-    "react-dom": "18.2.0",
-    "react-icons": "^4.8.0",
-    "tone": "^14.7.77",
-    "typescript": "4.9.5"
+    "@heroicons/react": "^2.2.0",
+    "framer-motion": "^12.4.7",
+    "next": "^15.1.7",
+    "nodemailer": "^6.10.0",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
+    "react-icons": "^5.4.0",
+    "tone": "14.7.77"
   },
   "devDependencies": {
-    "@vercel/analytics": "^0.1.11",
-    "postcss": "^8.4.21",
-    "prettier": "^2.8.4",
-    "prettier-plugin-tailwindcss": "^0.2.4",
-    "tailwindcss": "^3.2.7"
+    "@tailwindcss/postcss": "^4.0.0",
+    "@types/node": "^22.13.0",
+    "@types/nodemailer": "^6.4.17",
+    "@types/react": "^19.0.0",
+    "@types/react-dom": "^19.0.0",
+    "@vercel/analytics": "^1.5.0",
+    "eslint": "^9.19.0",
+    "eslint-config-next": "^15.1.7",
+    "postcss": "^8.5.0",
+    "prettier": "^3.4.0",
+    "prettier-plugin-tailwindcss": "^0.6.0",
+    "tailwindcss": "^4.0.0",
+    "typescript": "^5.7.0"
   }
 }

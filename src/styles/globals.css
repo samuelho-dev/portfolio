@@ -1,10 +1,23 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
+
+@source "../../src/**/*.{js,ts,jsx,tsx}";
+
+@theme {
+  --color-custom-light-pink: #F1C5B1;
+  --color-custom-yellow: #E3C732;
+  --color-custom-purple: #A45EDB;
+  --color-custom-green: #4AA573;
+  --color-custom-blue: #54C4E7;
+  --color-custom-white: #FEE9E1;
+  --color-custom-royal-blue: #124E78;
+  --color-custom-red: #ED2626;
+  --color-custom-black: #272727;
+}
+
 @font-face {
   font-family: 'CustomFont';
   src: url('../../public/fonts/proximanova.otf') format('opentype');
-  font-display: swap; /* use "swap" to show the font as soon as possible */
+  font-display: swap;
 }
 body {
   font-family: 'CustomFont', sans-serif;

@@ -50,7 +50,7 @@ function Contact() {
   };
   return (
     <div className="flex min-h-max w-full items-center justify-center">
-      <div className="tileShadow flex w-full flex-col items-center gap-20 rounded-3xl bg-customYellow py-4 md:w-1/2">
+      <div className="tileShadow flex w-full flex-col items-center gap-20 rounded-3xl bg-custom-yellow py-4 md:w-1/2">
         {!submit ? (
           <div className="w-5/6">
             <form className="flex w-full flex-col justify-center gap-2">
@@ -62,7 +62,7 @@ function Contact() {
                 type="text"
                 name="name"
                 onChange={handleForm}
-                className="border-b bg-transparent py-2 pl-4 font-light text-black ring-customRoyalBlue focus:rounded-md focus:outline-none focus:ring-1"
+                className="border-b bg-transparent py-2 pl-4 font-light text-black ring-custom-royal-blue focus:rounded-md focus:outline-none focus:ring-1"
               />
 
               <label htmlFor="email" className="mt-4 font-light text-black">
@@ -72,7 +72,7 @@ function Contact() {
                 type="email"
                 name="email"
                 onChange={handleForm}
-                className="border-b bg-transparent py-2 pl-4 font-light text-black ring-customRoyalBlue focus:rounded-md focus:outline-none focus:ring-1"
+                className="border-b bg-transparent py-2 pl-4 font-light text-black ring-custom-royal-blue focus:rounded-md focus:outline-none focus:ring-1"
               />
 
               <label htmlFor="subject" className="mt-4 font-light text-black">
@@ -82,7 +82,7 @@ function Contact() {
                 type="text"
                 name="subject"
                 onChange={handleForm}
-                className="border-b bg-transparent py-2 pl-4 font-light text-black ring-customRoyalBlue focus:rounded-md focus:outline-none focus:ring-1"
+                className="border-b bg-transparent py-2 pl-4 font-light text-black ring-custom-royal-blue focus:rounded-md focus:outline-none focus:ring-1"
               />
 
               <label
@@ -94,13 +94,13 @@ function Contact() {
               </label>
               <textarea
                 name="message"
-                className="border-b bg-transparent py-2 pl-4 font-light text-black ring-customRoyalBlue focus:rounded-md focus:outline-none focus:ring-1"
+                className="border-b bg-transparent py-2 pl-4 font-light text-black ring-custom-royal-blue focus:rounded-md focus:outline-none focus:ring-1"
                 onChange={handleForm}
               ></textarea>
               <div className="flex justify-end ">
                 <button
                   type="submit"
-                  className="rounded-2xl bg-customRed px-2 text-customWhite"
+                  className="rounded-2xl bg-custom-red px-2 text-custom-white"
                   onClick={handleSubmit}
                 >
                   Submit
