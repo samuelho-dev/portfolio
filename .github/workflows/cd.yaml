@@ -100,7 +100,7 @@ jobs:
       - name: Dispatch to ai-dev-env
         uses: peter-evans/repository-dispatch@v3
         with:
-          token: ${{ secrets.DEPLOY_TOKEN }}
+          token: ${{ secrets.AI_DEV_ENV_PAT }}
           repository: samuelho-dev/ai-dev-env
           event-type: portfolio-image-update
           client-payload: |
