@@ -1,0 +1,80 @@
+# Mutagen Project Configuration
+# Usage: mutagen project start (from repository root)
+#
+# This file defines bidirectional file sync between your local machine
+# and the DevPod running in Kubernetes.
+#
+# Prerequisites:
+#   1. DevPod deployed: helm install ... (or ArgoCD sync)
+#   2. Tailscale connected: tailscale status
+#   3. SSH access working: ssh coder@devpod-portfolio
+#
+# Commands:
+#   mutagen project start     - Start sync session
+#   mutagen project list      - Show active sessions
+#   mutagen project pause     - Pause syncing
+#   mutagen project resume    - Resume syncing
+#   mutagen project terminate - Stop and remove session
+
+sync:
+  # Sync session for portfolio DevPod
+  devpod:
+    alpha: .
+    beta: coder@devpod-portfolio:/home/coder/portfolio
+    mode: two-way-resolved
+
+    ignore:
+      vcs: true
+      paths:
+        # JavaScript/TypeScript
+        - node_modules/
+        - .next/
+        - .turbo/
+        - dist/
+        - build/
+        - .cache/
+        - .vercel/
+
+        # Python
+        - __pycache__/
+        - "*.pyc"
+        - .pytest_cache/
+        - .venv/
+        - venv/
+
+        # Nix
+        - .nix-defexpr/
+        - .nix-profile/
+        - .direnv/
+
+        # IDE/Editor
+        - .idea/
+        - "*.swp"
+        - "*.swo"
+
+        # OS
+        - .DS_Store
+        - Thumbs.db
+
+        # Logs
+        - "*.log"
+        - logs/
+
+        # Static assets (if generated)
+        - public/generated/
+
+    # Symlink handling for cross-platform compatibility
+    symlink:
+      mode: posix-raw
+
+    # Permission settings for Kubernetes (UID 1000 = coder user)
+    permissions:
+      defaultFileMode: 420  # 0644 in decimal
+      defaultDirectoryMode: 493  # 0755 in decimal
+      defaultOwner: id:1000
+      defaultGroup: id:1000
+
+    # Watch mode for efficient change detection
+    watch:
+      mode: portable
+      pollingInterval: 5
