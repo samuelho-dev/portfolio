@@ -63,7 +63,7 @@ function Contact() {
       <div className="flex min-h-[60vh] items-center justify-center px-6">
         <div className="text-center">
           <h2 className="mb-4 text-cream">Message sent</h2>
-          <p className="text-text-muted">Thanks for reaching out. I'll get back to you soon.</p>
+          <p className="text-text-muted">Thanks for reaching out. I&apos;ll get back to you soon.</p>
         </div>
       </div>
     );
