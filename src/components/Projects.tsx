@@ -73,9 +73,9 @@ function Projects() {
         <h3 className="mb-8 text-cream">Featured Projects</h3>
         {/* Grid: 1 col mobile, 2 col tablet+ */}
         <div className="grid grid-cols-1 gap-6 md:grid-cols-2 md:gap-8">
-          {featuredProjects.map((project, i) => (
+          {featuredProjects.map((project) => (
             <a
-              key={i}
+              key={project.name}
               href={project.source}
               target="_blank"
               rel="noopener noreferrer"
@@ -123,11 +123,11 @@ function Projects() {
 
                 {/* Tech stack */}
                 <div className="flex flex-wrap gap-2">
-                  {project.technologies.slice(0, 4).map((tech, j) => {
+                  {project.technologies.slice(0, 4).map((tech) => {
                     const Icon = iconMap[tech];
                     return (
                       <div
-                        key={j}
+                        key={tech}
                         className="flex items-center gap-1 text-text-muted"
                       >
                         {Icon && <Icon className="h-3 w-3" />}
@@ -152,9 +152,9 @@ function Projects() {
         <div>
           <h3 className="mb-8 text-cream">Other Projects</h3>
           <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
-            {otherProjects.map((project: { name: string; description: string; technologies: string[]; source?: string }, i: number) => (
+            {otherProjects.map((project: { name: string; description: string; technologies: string[]; source?: string }) => (
               <a
-                key={i}
+                key={project.name}
                 href={project.source}
                 target="_blank"
                 rel="noopener noreferrer"
@@ -175,11 +175,11 @@ function Projects() {
                 </div>
 
                 <div className="flex flex-wrap gap-2">
-                  {project.technologies.map((tech: string, j: number) => {
+                  {project.technologies.map((tech: string) => {
                     const Icon = iconMap[tech];
                     return (
                       <div
-                        key={j}
+                        key={tech}
                         className="flex items-center gap-1 text-text-muted"
                       >
                         {Icon && <Icon className="h-3 w-3" />}

@@ -10,6 +10,7 @@ const Bongo = '/sounds/SD3_BONGO33.mp3';
 
 const notes = [hiHat, Snare, Kick, Bongo];
 const drumLabels = ['HAT', 'SNR', 'KCK', 'PRC'];
+const stepIds = Array.from({ length: 16 }, (_, i) => `step-${i}`);
 
 type GridMode = '8n' | '16n';
 
@@ -148,7 +149,7 @@ function StepSequencer() {
 
   const handleTempoChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const newTempo = parseInt(e.target.value, 10);
-    if (!isNaN(newTempo) && newTempo >= 60 && newTempo <= 200) {
+    if (!Number.isNaN(newTempo) && newTempo >= 60 && newTempo <= 200) {
       setTempo(newTempo);
       Transport.bpm.value = newTempo;
     }
@@ -165,6 +166,7 @@ function StepSequencer() {
           <div className="flex items-center gap-3">
             {/* Play Button */}
             <button
+              type="button"
               onClick={handlePlay}
               disabled={!loaded}
               className={`group flex h-10 w-10 items-center justify-center rounded-full transition-all duration-150 ${
@@ -216,15 +218,15 @@ function StepSequencer() {
           <div className="flex gap-2">
             {/* Labels */}
             <div className="flex w-8 flex-shrink-0 flex-col pt-4" style={{ gap: PAD_GAP }}>
-              {drumLabels.map((label, i) => (
+              {drumLabels.map((label, rowIndex) => (
                 <div
-                  key={i}
+                  key={label}
                   className="flex items-center justify-end"
                   style={{ height: PAD_SIZE }}
                 >
                   <span
                     className="seq-label text-[0.6rem] font-bold uppercase tracking-wider"
-                    data-row={i}
+                    data-row={rowIndex}
                   >
                     {label}
                   </span>
@@ -246,15 +248,15 @@ function StepSequencer() {
                 <div style={{ width: gridWidth }}>
                   {/* Step dots */}
                   <div className="mb-2 flex" style={{ gap: PAD_GAP }}>
-                    {Array.from({ length: stepCount }, (_, i) => (
+                    {stepIds.slice(0, stepCount).map((stepId, stepIndex) => (
                       <div
-                        key={i}
+                        key={stepId}
                         className="flex justify-center"
                         style={{ width: PAD_SIZE }}
                       >
                         <div
                           className={`h-1 w-1 rounded-full transition-all duration-75 ${
-                            currentStep === i
+                            currentStep === stepIndex
                               ? 'bg-white shadow-[0_0_6px_rgba(255,255,255,0.8)]'
                               : 'bg-white/15'
                           }`}
@@ -266,10 +268,11 @@ function StepSequencer() {
                   {/* Pads */}
                   <div className="flex flex-col" style={{ gap: PAD_GAP }}>
                     {grid.map((row, rowIdx) => (
-                      <div key={rowIdx} className="flex" style={{ gap: PAD_GAP }}>
+                      <div key={row[0].key} className="flex" style={{ gap: PAD_GAP }}>
                         {row.map((note, noteIdx) => (
                           <button
-                            key={`${rowIdx}-${noteIdx}`}
+                            type="button"
+                            key={`${note.key}-${noteIdx}`}
                             disabled={!loaded}
                             onClick={() => handleNoteClick(rowIdx, noteIdx)}
                             data-row={rowIdx}
@@ -296,6 +299,7 @@ function StepSequencer() {
         {/* Footer - Step count toggle */}
         <div className="flex items-center justify-end border-t border-white/[0.06] px-4 py-2.5">
           <button
+            type="button"
             onClick={handleGridModeChange}
             className="flex items-center gap-1.5 rounded-full bg-white/[0.05] px-3 py-1.5 text-[0.65rem] font-semibold uppercase tracking-wider text-white/50 transition-all hover:bg-white/[0.08] hover:text-white/70"
           >
@@ -307,6 +311,7 @@ function StepSequencer() {
               viewBox="0 0 24 24"
               stroke="currentColor"
               strokeWidth={2}
+              aria-hidden="true"
             >
               <path
                 strokeLinecap="round"

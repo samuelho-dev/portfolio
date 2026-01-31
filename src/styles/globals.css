@@ -205,7 +205,6 @@ h5 {
 
 /* Current step ring */
 .seq-pad.current-step {
-  ring: 2px solid rgba(255, 255, 255, 0.4);
   box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.4);
 }
 

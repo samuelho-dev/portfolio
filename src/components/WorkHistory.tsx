@@ -38,9 +38,10 @@ function WorkHistory() {
       <div className="grid grid-cols-1 gap-8 md:grid-cols-[240px_1fr] md:gap-10 lg:grid-cols-[280px_1fr] lg:gap-12">
         {/* Company List - sidebar on tablet+ */}
         <div className="flex flex-col gap-2">
-          {experience.map((entry, i) => (
+          {experience.map((entry, index) => (
             <button
-              key={i}
+              type="button"
+              key={entry.employer}
               onClick={() => handleDetails(entry)}
               className={`group flex items-center gap-4 border-l-2 px-4 py-3 text-left transition-colors duration-200 ${
                 detail.employer === entry.employer
@@ -55,7 +56,7 @@ function WorkHistory() {
                     : 'text-text-muted group-hover:text-cream'
                 }`}
               >
-                0{i + 1}
+                0{index + 1}
               </span>
               <span
                 className={`transition-colors duration-200 ${
@@ -106,10 +107,10 @@ function WorkHistory() {
 
               {/* Responsibilities list */}
               <ul className="flex flex-col gap-3">
-                {detail.responsibilities.map((el, i) => (
-                  <li key={i} className="flex items-start gap-3">
+                {detail.responsibilities.map((responsibility) => (
+                  <li key={responsibility.slice(0, 50)} className="flex items-start gap-3">
                     <span className="mt-2 h-1 w-1 flex-shrink-0 bg-accent-primary" />
-                    <span className="text-text-muted">{el}</span>
+                    <span className="text-text-muted">{responsibility}</span>
                   </li>
                 ))}
               </ul>
