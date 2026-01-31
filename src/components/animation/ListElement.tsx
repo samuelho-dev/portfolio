@@ -1,40 +1,21 @@
-import { useRef } from 'react';
-import { motion, useInView } from 'framer-motion';
+import React from 'react';
+import { motion } from 'framer-motion';
 
 interface ListElementProps {
-  style: string;
-  children: any;
+  children: React.ReactNode;
+  style?: string;
 }
 
-function ListElement({ style, children }: ListElementProps) {
-  const listRef = useRef(null);
-  const isInView = useInView(listRef);
-  const headerVariants = {
-    offscreen: {
-      x: 5,
-      opacity: 0.8,
-    },
-    onscreen: {
-      x: 0,
-      opacity: 1,
-      transition: {
-        ease: 'easeInOut' as const,
-        duration: 0.5,
-      },
-    },
-  };
-
+export default function ListElement({ children, style = '' }: ListElementProps) {
   return (
     <motion.li
-      ref={listRef}
-      variants={headerVariants}
-      initial="offscreen"
       className={style}
-      animate={isInView ? 'onscreen' : 'offscreen'}
+      initial={{ opacity: 0, x: -10 }}
+      whileInView={{ opacity: 1, x: 0 }}
+      viewport={{ once: true }}
+      transition={{ duration: 0.4, ease: 'easeOut' }}
     >
       {children}
     </motion.li>
   );
 }
-
-export default ListElement;

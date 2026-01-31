@@ -1,189 +1,198 @@
-import React from 'react';
 import data from '../../util/resume.json';
-import { TbBrandNextjs, TbBrandTailwind } from 'react-icons/tb';
-import { FaNodeJs, FaReact, FaAws } from 'react-icons/fa';
-import { FiLink } from 'react-icons/fi';
+import { FiArrowUpRight } from 'react-icons/fi';
+import { BsGithub } from 'react-icons/bs';
 import {
-  SiBackblaze,
+  SiTypescript,
+  SiPostgresql,
   SiFirebase,
   SiFastapi,
-  SiMysql,
-  SiOpenai,
   SiPython,
   SiReact,
   SiTrpc,
-  SiTypescript,
   SiFlask,
+  SiPrisma,
+  SiMysql,
+  SiNextdotjs,
+  SiOpenai,
+  SiBackblaze,
+  SiReactquery,
+  SiJavascript,
+  SiSequelize,
+  SiObsidian,
+  SiLinear,
 } from 'react-icons/si';
-import { TbBrandTwilio } from 'react-icons/tb';
-import { RxDiscordLogo } from 'react-icons/rx';
-import { SiPrisma } from 'react-icons/si';
-import { SiPostgresql } from 'react-icons/si';
-import { SiReactquery } from 'react-icons/si';
-import { SiJavascript } from 'react-icons/si';
-import { SiSequelize } from 'react-icons/si';
-import { BsFiletypeMdx, BsGithub } from 'react-icons/bs';
-import { HiOutlinePlusCircle } from 'react-icons/hi';
+import { FaAws, FaNodeJs, FaReact } from 'react-icons/fa';
+import { TbBrandTailwind, TbBrandTwilio } from 'react-icons/tb';
+import { BsFiletypeMdx } from 'react-icons/bs';
 import { SlPaypal } from 'react-icons/sl';
+import { RxDiscordLogo } from 'react-icons/rx';
 import Image from 'next/image';
-import ProjectContainer from './animation/ProjectContainer';
+import type { IconType } from 'react-icons';
 
-interface IconMap {
-  [key: string]: React.ReactElement;
-}
+const iconMap: Record<string, IconType> = {
+  'React Native': FaReact,
+  'React Query': SiReactquery,
+  Typescript: SiTypescript,
+  Firebase: SiFirebase,
+  Prisma: SiPrisma,
+  PostgreSQL: SiPostgresql,
+  Javascript: SiJavascript,
+  Sequelize: SiSequelize,
+  'Open AI': SiOpenai,
+  'Fast API': SiFastapi,
+  Flask: SiFlask,
+  Python: SiPython,
+  React: SiReact,
+  AWS: FaAws,
+  Node: FaNodeJs,
+  NextJS: SiNextdotjs,
+  Tailwind: TbBrandTailwind,
+  MDX: BsFiletypeMdx,
+  TRPC: SiTrpc,
+  Backblaze: SiBackblaze,
+  MySQL: SiMysql,
+  Paypal: SlPaypal,
+  Twilio: TbBrandTwilio,
+  DiscordJs: RxDiscordLogo,
+  Effect: SiTypescript,
+  Kysely: SiTypescript,
+  Nx: SiTypescript,
+  MCP: SiTypescript,
+  Obsidian: SiObsidian,
+  Linear: SiLinear,
+};
 
 function Projects() {
   const featuredProjects = data.featuredProjects;
   const otherProjects = data.otherProjects;
-  const iconmap: IconMap = {
-    'React Native': <FaReact color="white" />,
-    'React Query': <SiReactquery color="white" />,
-    Typescript: <SiTypescript color="white" />,
-    Firebase: <SiFirebase color="white" />,
-    Prisma: <SiPrisma color="white" />,
-    PostgreSQL: <SiPostgresql color="white" />,
-    Javascript: <SiJavascript color="white" />,
-    Sequelize: <SiSequelize color="white" />,
-    'Open AI': <SiOpenai color="white" />,
-    'Fast API': <SiFastapi color="white" />,
-    Flask: <SiFlask color="white" />,
-    Python: <SiPython color="white" />,
-    React: <SiReact color="white" />,
-    Plus: <HiOutlinePlusCircle color="white" />,
-    AWS: <FaAws color="white" />,
-    Node: <FaNodeJs color="white" />,
-    NextJS: <TbBrandNextjs color="white" />,
-    Tailwind: <TbBrandTailwind color="white" />,
-    MDX: <BsFiletypeMdx color="white" />,
-    TRPC: <SiTrpc color="white" />,
-    Backblaze: <SiBackblaze color="white" />,
-    MySQL: <SiMysql color="white" />,
-    Paypal: <SlPaypal color="white" />,
-    Twilio: <TbBrandTwilio color="white" />,
-    DiscordJs: <RxDiscordLogo color="white" />,
-  };
+
   return (
-    <section className="flex w-full flex-col items-center gap-40">
-      <div className="flex w-full flex-col items-center">
-        <h2 className="w-full font-bold text-custom-white">Projects</h2>
-        <ul className="flex max-w-6xl flex-col items-center gap-10">
+    <section className="flex flex-col gap-16">
+      {/* Featured Projects */}
+      <div>
+        <h3 className="mb-8 text-cream">Featured Projects</h3>
+        {/* Grid: 1 col mobile, 2 col tablet+ */}
+        <div className="grid grid-cols-1 gap-6 md:grid-cols-2 md:gap-8">
           {featuredProjects.map((project, i) => (
-            <li
-              key={i}
-              className={`flex w-full flex-col items-center gap-4 py-10 md:p-6 xl:w-fit xl:flex-row ${
-                i % 2 !== 0 && 'xl:flex-row-reverse'
-              }`}
-            >
-              <ProjectContainer
-                bool={i % 2 !== 0}
-                style={`z-0 w-fit bg-custom-white hover:bg-none ${
-                  i % 2 !== 0 && 'xl:ml-[-10%]'
-                }`}
-              >
-                <div className="tileShadow mix-blend-darken grayscale filter hover:filter-none">
-                  <Image
-                    src={project.image}
-                    alt={project.name}
-                    height={500}
-                    width={500}
-                    className="object-scale-down"
-                    loading="lazy"
-                  />
-                </div>
-              </ProjectContainer>
-              <ProjectContainer
-                bool={i % 2 === 0}
-                style={`z-10 flex w-full flex-col justify-center xl:w-1/2 ${
-                  i % 2 === 0 && 'xl:ml-[-10%]'
-                }`}
-              >
-                <div
-                  className={`flex items-center gap-2 ${
-                    i % 2 === 0 && 'justify-end'
-                  }`}
-                >
-                  <a
-                    href={project.source}
-                    aria-label={project.source}
-                    className="cursor-pointer"
-                    target="_blank"
-                  >
-                    <h1 className=" font-bold text-custom-white hover:text-opacity-80">
-                      {project.name}
-                    </h1>
-                  </a>
-                  <a href={project.source} target="_blank">
-                    <FiLink className="text-custom-green" />
-                  </a>
-                </div>
-
-                <p
-                  className={`flex text-custom-white opacity-60 ${
-                    i % 2 === 0 && 'justify-end '
-                  }`}
-                >
-                  {project.role}
-                </p>
-                <div className="bg-custom-green bg-opacity-80 p-2">
-                  <p
-                    className={`text-custom-white ${
-                      i % 2 === 0 && 'text-right'
-                    }`}
-                  >
-                    {project.description}
-                  </p>
-                </div>
-
-                <div
-                  className={`flex flex-wrap gap-2 md:flex-nowrap md:gap-4 ${
-                    i % 2 === 0 && 'justify-end'
-                  } `}
-                >
-                  {project.technologies.map((tech, k) => (
-                    <div key={k} className={`flex items-center gap-2 pt-4`}>
-                      <div>{iconmap[tech]}</div>
-                      <sub className=" text-custom-white md:whitespace-nowrap">
-                        {tech}
-                      </sub>
-                    </div>
-                  ))}
-                </div>
-              </ProjectContainer>
-            </li>
-          ))}
-        </ul>
-      </div>
-      <div className="flex w-full flex-col items-center gap-2">
-        <h5 className="w-full font-bold text-custom-white">Other Projects</h5>
-        <div className="max-w-6xl">
-          {otherProjects.map((project, i) => (
             <a
               key={i}
               href={project.source}
               target="_blank"
-              className="flex w-full"
+              rel="noopener noreferrer"
+              className={`group relative flex flex-col overflow-hidden border border-border transition-colors duration-300 hover:border-cream ${
+                project.image ? 'aspect-[4/3]' : ''
+              }`}
             >
-              <div className="tileShadow m-2 flex w-full cursor-pointer flex-col justify-between bg-custom-royal-blue p-2">
-                <div className="flex items-center gap-2">
-                  <div>{iconmap.Plus}</div>
-                  <h5 className="w-fit border-b-2 border-transparent  transition duration-300 hover:border-custom-black">
-                    {project.name}
-                  </h5>
+              {/* Background - either image or gradient for code projects */}
+              <div className="absolute inset-0">
+                {project.image ? (
+                  <>
+                    <Image
+                      src={project.image}
+                      alt={project.name}
+                      fill
+                      sizes="(max-width: 768px) 100vw, 50vw"
+                      className="object-cover opacity-60 grayscale transition-all duration-500 group-hover:scale-105 group-hover:opacity-100 group-hover:grayscale-0"
+                      loading="lazy"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-base via-base/60 to-transparent" />
+                  </>
+                ) : (
+                  <div className="h-full w-full bg-gradient-to-br from-base-light via-base to-base" />
+                )}
+              </div>
+
+              {/* Content overlay */}
+              <div className={`relative z-10 flex flex-col gap-3 p-5 md:gap-4 md:p-6 ${project.image ? 'mt-auto' : ''}`}>
+                {/* GitHub icon for code projects without images */}
+                {!project.image && (
+                  <BsGithub className="mb-2 h-8 w-8 text-text-muted" />
+                )}
+
+                <div className="flex items-start justify-between gap-4">
+                  <div>
+                    <span className="caption text-accent-primary">{project.role}</span>
+                    <h3 className="text-cream">{project.name}</h3>
+                  </div>
+                  <FiArrowUpRight className="h-5 w-5 flex-shrink-0 text-text-muted transition-transform duration-300 group-hover:-translate-y-1 group-hover:translate-x-1 group-hover:text-cream" />
                 </div>
-                <p>{project.description}</p>
-                <div className="flex flex-wrap gap-4">
-                  {project.technologies.map((tech, j) => (
-                    <div key={j} className={`flex items-center gap-2 pt-4`}>
-                      <div>{iconmap[tech]}</div>
-                      <sub className="text-custom-white">{tech}</sub>
-                    </div>
-                  ))}
+
+                <p className="line-clamp-2 text-sm text-text-muted">
+                  {project.description}
+                </p>
+
+                {/* Tech stack */}
+                <div className="flex flex-wrap gap-2">
+                  {project.technologies.slice(0, 4).map((tech, j) => {
+                    const Icon = iconMap[tech];
+                    return (
+                      <div
+                        key={j}
+                        className="flex items-center gap-1 text-text-muted"
+                      >
+                        {Icon && <Icon className="h-3 w-3" />}
+                        <span className="text-xs">{tech}</span>
+                      </div>
+                    );
+                  })}
+                  {project.technologies.length > 4 && (
+                    <span className="text-xs text-text-muted">
+                      +{project.technologies.length - 4}
+                    </span>
+                  )}
                 </div>
               </div>
             </a>
           ))}
         </div>
       </div>
+
+      {/* Other Projects - only show if there are any */}
+      {otherProjects.length > 0 && (
+        <div>
+          <h3 className="mb-8 text-cream">Other Projects</h3>
+          <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
+            {otherProjects.map((project: { name: string; description: string; technologies: string[]; source?: string }, i: number) => (
+              <a
+                key={i}
+                href={project.source}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group flex flex-col gap-4 border border-border p-5 transition-colors duration-300 hover:border-cream hover:bg-base-light md:p-6"
+              >
+                <div className="flex items-start justify-between">
+                  <BsGithub className="h-5 w-5 text-text-muted" />
+                  <FiArrowUpRight className="h-4 w-4 text-text-muted opacity-0 transition-all duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:opacity-100" />
+                </div>
+
+                <div className="flex-1">
+                  <h3 className="mb-2 text-cream transition-colors duration-300 group-hover:text-accent-primary">
+                    {project.name}
+                  </h3>
+                  <p className="line-clamp-2 text-sm text-text-muted">
+                    {project.description}
+                  </p>
+                </div>
+
+                <div className="flex flex-wrap gap-2">
+                  {project.technologies.map((tech: string, j: number) => {
+                    const Icon = iconMap[tech];
+                    return (
+                      <div
+                        key={j}
+                        className="flex items-center gap-1 text-text-muted"
+                      >
+                        {Icon && <Icon className="h-3 w-3" />}
+                        <span className="text-xs">{tech}</span>
+                      </div>
+                    );
+                  })}
+                </div>
+              </a>
+            ))}
+          </div>
+        </div>
+      )}
     </section>
   );
 }

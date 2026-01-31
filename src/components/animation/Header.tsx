@@ -1,43 +1,25 @@
 import React from 'react';
-import { motion, useInView } from 'framer-motion';
+import { motion } from 'framer-motion';
 
 interface HeaderProps {
   id: string;
   itemRef: React.RefObject<HTMLDivElement | null>;
-  style: string;
-  children: any;
+  style?: string;
+  children: React.ReactNode;
 }
 
-function Header({ id, itemRef, style, children }: HeaderProps) {
-  const isInView = useInView(itemRef);
-  const headerVariants = {
-    offscreen: {
-      y: 20,
-      opacity: 0,
-    },
-    onscreen: {
-      y: -10,
-      opacity: 1,
-      transition: {
-        type: 'spring' as const,
-        bounce: 0.2,
-        duration: 1,
-      },
-    },
-  };
+export default function Header({ id, itemRef, style = '', children }: HeaderProps) {
   return (
-    <motion.div
+    <motion.section
       id={id}
       ref={itemRef}
-      variants={headerVariants}
-      initial="offscreen"
-      animate={isInView ? 'onscreen' : 'offscreen'}
-      viewport={{ once: true, amount: 0.8 }}
       className={style}
+      initial={{ opacity: 0 }}
+      whileInView={{ opacity: 1 }}
+      viewport={{ once: true, margin: '-100px' }}
+      transition={{ duration: 0.6, ease: 'easeOut' }}
     >
       {children}
-    </motion.div>
+    </motion.section>
   );
 }
-
-export default Header;

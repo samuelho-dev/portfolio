@@ -3,6 +3,7 @@ import type { NextConfig } from 'next';
 const nextConfig: NextConfig = {
   reactStrictMode: true,
   output: 'standalone',
+  turbopack: {},
   webpack(config) {
     config.module.rules.push({
       test: /\.(mp3)$/i,

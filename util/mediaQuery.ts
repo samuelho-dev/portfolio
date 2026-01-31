@@ -13,18 +13,10 @@ export function useMediaQuery(query: string) {
       setMatches(media.matches);
     };
 
-    if (typeof media.addEventListener === 'function') {
-      media.addEventListener('change', listener);
-    } else {
-      media.addEventListener('change', listener);
-    }
+    media.addEventListener('change', listener);
 
     return () => {
-      if (typeof media.removeEventListener === 'function') {
-        media.removeEventListener('change', listener);
-      } else {
-        media.removeEventListener('change', listener);
-      }
+      media.removeEventListener('change', listener);
     };
   }, [matches, query]);
 

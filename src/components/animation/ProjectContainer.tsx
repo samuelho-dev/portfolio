@@ -1,42 +1,26 @@
-import { useRef } from 'react';
-import { motion, useInView } from 'framer-motion';
+import React from 'react';
+import { motion } from 'framer-motion';
 
 interface ProjectContainerProps {
-  style: string;
-  bool: boolean;
-  children: any;
+  children: React.ReactNode;
+  style?: string;
+  bool?: boolean;
 }
 
-function ProjectContainer({ style, bool, children }: ProjectContainerProps) {
-  const listRef = useRef(null);
-  const isInView = useInView(listRef);
-  const headerVariants = {
-    offscreen: {
-      x: bool ? -5 : 5,
-      opacity: 0.75,
-    },
-    onscreen: {
-      x: 0,
-      opacity: 1,
-      transition: {
-        type: 'spring' as const,
-        bounce: 0.1,
-        duration: 0.5,
-      },
-    },
-  };
-
+export default function ProjectContainer({
+  children,
+  style = '',
+  bool = false,
+}: ProjectContainerProps) {
   return (
     <motion.div
-      ref={listRef}
-      variants={headerVariants}
-      initial="offscreen"
       className={style}
-      animate={isInView ? 'onscreen' : 'offscreen'}
+      initial={{ opacity: 0, x: bool ? 30 : -30 }}
+      whileInView={{ opacity: 1, x: 0 }}
+      viewport={{ once: true, margin: '-50px' }}
+      transition={{ duration: 0.6, ease: 'easeOut' }}
     >
       {children}
     </motion.div>
   );
 }
-
-export default ProjectContainer;

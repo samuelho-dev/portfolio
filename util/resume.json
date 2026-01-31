@@ -73,75 +73,33 @@
         "Event Production",
         "Audio Engineering"
       ],
-      "source": "https://instagram.com/audiospacehq",
+      "source": "https://audiospace.live",
       "image": "https://res.cloudinary.com/ddhal4lbv/image/upload/v1724131876/audiospacelive/otks0hrip8a1wsxpar9v.png"
     },
     {
-      "name": "US Data App",
-      "role": "Full Stack Engineer",
-      "description": "Data Visualization app based on US Census & Fred Economic Data. Broad overview of diversity, population, housing, and economic conditions utilizing publicly accessible APIs.",
-      "technologies": ["Typescript", "NextJS", "Nivo", "MySQL"],
-      "source": "https://usdata.vercel.app",
-      "image": "https://res.cloudinary.com/ddhal4lbv/image/upload/v1679541608/Portfolio/USData_yxpbio.png"
+      "name": "Prisma Effect Kysely",
+      "role": "Open Source",
+      "description": "Generate Effect schemas compatible with Kysely from Prisma models. Type-safe database queries with full Effect integration.",
+      "technologies": ["Typescript", "Effect", "Prisma", "Kysely"],
+      "source": "https://github.com/samuelho-dev/prisma-effect-kysely",
+      "image": ""
     },
     {
-      "name": "Swapesy",
-      "role": "PM/Full Stack Engineer",
-      "description": "A mobile ecommerce app for trading card enthusiasts. Users can interact with each other via our real-time messaging platform and trade/purchase cards.",
-      "technologies": ["React Native", "Firebase"],
-      "source": "https://github.com/stunningstunfisk/swapesy",
-      "image": "https://res.cloudinary.com/ddhal4lbv/image/upload/v1679541608/Portfolio/Swapesy_lkmxdj.png"
+      "name": "Monorepo Library Generator",
+      "role": "Open Source",
+      "description": "Generate well-architected monorepo libraries based on Effect and Nx. Supports Repository, DDD, Contract, Adapter, and Feature library patterns.",
+      "technologies": ["Typescript", "Effect", "Nx", "MCP"],
+      "source": "https://github.com/samuelho-dev/monorepo-library-generator",
+      "image": ""
     },
     {
-      "name": "AlbumGuessr",
-      "role": "Full Stack Engineer",
-      "description": "A web game utilizing Spotify search data, and webplayback SDK. Match the currently played track to the correct album cover, earn points and keep track of the top scorers on the leaderboard",
-      "technologies": [
-        "Typescript",
-        "NextJS",
-        "NextAuth",
-        "Prisma",
-        "React Query",
-        "PostgreSQL"
-      ],
-      "source": "https://github.com/samuelho-dev/albumguessr",
-      "image": "https://res.cloudinary.com/ddhal4lbv/image/upload/v1679541608/Portfolio/albumguessr_fsff5n.png"
-    },
-    {
-      "name": "DiscordSMS",
-      "role": "Back End Engineer",
-      "description": "Manage your marketing and event list with SMS and Discord.",
-      "technologies": [
-        "Node",
-        "Typescript",
-        "DiscordJs",
-        "PostgreSQL",
-        "KnexJs",
-        "Twilio"
-      ],
-      "source": "https://github.com/samuelho-dev/discordSMS",
-      "image": "https://res.cloudinary.com/ddhal4lbv/image/upload/v1687455966/Portfolio/DiscordSMS_dsiucf.png"
+      "name": "Obsidian Linear Sync",
+      "role": "Open Source",
+      "description": "Bidirectional sync between Linear issues and Obsidian with automatic file generation, multi-team support, and state-based organization.",
+      "technologies": ["Typescript", "Obsidian", "Linear"],
+      "source": "https://github.com/samuelho-dev/obsidian-linear-sync",
+      "image": ""
     }
   ],
-  "otherProjects": [
-    {
-      "name": "GPT Market Analytics",
-      "description": "An API utilizing GPT to process and compare news articles about the top companies in a given industry",
-      "technologies": ["Python", "Flask", "Open AI"],
-      "source": "https://github.com/samuelho-dev/marketanalyticsapi"
-    },
-    {
-      "name": "SunChip",
-      "role": "Engineer",
-      "description": "Designed and implemented a secure backend and database for a fashion ecommerce store hosted using AWS EC2. Implemented caching via NGNIX and horizontal scaling via AWS.",
-      "technologies": ["Javascript", "Node", "PostgreSQL", "Sequelize", "AWS"]
-    },
-
-    {
-      "name": "Fashion Ecommerce Site",
-      "description": "Functional ecommerce front-end with extensive product selections and articles.",
-      "technologies": ["React"],
-      "source": "https://github.com/samuelho-dev/Fashion-Ecommerce-Site"
-    }
-  ]
+  "otherProjects": []
 }

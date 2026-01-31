@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { Form } from '../../types/types';
+import { useState } from 'react';
+import type { Form } from '../../types/types';
 
 function validate(form: Form) {
   const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -29,88 +29,120 @@ function Contact() {
     subject: '',
     message: '',
   });
-  const [submit, setSubmit] = useState(false);
+  const [submitted, setSubmitted] = useState(false);
+  const [submitting, setSubmitting] = useState(false);
 
-  const handleForm = (e: any) => {
+  const handleForm = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
     const { name, value } = e.target;
     setForm({ ...form, [name]: value });
   };
 
-  const handleSubmit = async (e: { preventDefault: () => void }) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!validate(form)) return;
+
+    setSubmitting(true);
     try {
-      fetch('/api/mail', {
+      await fetch('/api/mail', {
         method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(form),
-      }).then(() => setSubmit(true));
+      });
+      setSubmitted(true);
     } catch (err) {
       console.error(err);
+    } finally {
+      setSubmitting(false);
     }
   };
+
+  if (submitted) {
+    return (
+      <div className="flex min-h-[60vh] items-center justify-center px-6">
+        <div className="text-center">
+          <h2 className="mb-4 text-cream">Message sent</h2>
+          <p className="text-text-muted">Thanks for reaching out. I'll get back to you soon.</p>
+        </div>
+      </div>
+    );
+  }
+
   return (
-    <div className="flex min-h-max w-full items-center justify-center">
-      <div className="tileShadow flex w-full flex-col items-center gap-20 rounded-3xl bg-custom-yellow py-4 md:w-1/2">
-        {!submit ? (
-          <div className="w-5/6">
-            <form className="flex w-full flex-col justify-center gap-2">
-              <label htmlFor="name" className="mt-8 font-light text-black">
-                Full name
-                <span className="text-red-500">*</span>
-              </label>
-              <input
-                type="text"
-                name="name"
-                onChange={handleForm}
-                className="border-b bg-transparent py-2 pl-4 font-light text-black ring-custom-royal-blue focus:rounded-md focus:outline-none focus:ring-1"
-              />
+    <div className="flex min-h-[60vh] items-center justify-center px-6 py-12">
+      <div className="w-full max-w-md">
+        <h2 className="mb-8 text-cream">Get in touch</h2>
 
-              <label htmlFor="email" className="mt-4 font-light text-black">
-                E-mail<span className="text-red-500">*</span>
-              </label>
-              <input
-                type="email"
-                name="email"
-                onChange={handleForm}
-                className="border-b bg-transparent py-2 pl-4 font-light text-black ring-custom-royal-blue focus:rounded-md focus:outline-none focus:ring-1"
-              />
-
-              <label htmlFor="subject" className="mt-4 font-light text-black">
-                Subject<span className="text-red-500">*</span>
-              </label>
-              <input
-                type="text"
-                name="subject"
-                onChange={handleForm}
-                className="border-b bg-transparent py-2 pl-4 font-light text-black ring-custom-royal-blue focus:rounded-md focus:outline-none focus:ring-1"
-              />
-
-              <label
-                htmlFor="message"
-                onChange={handleForm}
-                className="mt-4 font-light text-black"
-              >
-                Message<span className="text-red-500">*</span>
-              </label>
-              <textarea
-                name="message"
-                className="border-b bg-transparent py-2 pl-4 font-light text-black ring-custom-royal-blue focus:rounded-md focus:outline-none focus:ring-1"
-                onChange={handleForm}
-              ></textarea>
-              <div className="flex justify-end ">
-                <button
-                  type="submit"
-                  className="rounded-2xl bg-custom-red px-2 text-custom-white"
-                  onClick={handleSubmit}
-                >
-                  Submit
-                </button>
-              </div>
-            </form>
+        <form onSubmit={handleSubmit} className="flex flex-col gap-6">
+          <div className="flex flex-col gap-2">
+            <label htmlFor="name" className="caption text-text-muted">
+              Name <span className="text-accent-primary">*</span>
+            </label>
+            <input
+              type="text"
+              id="name"
+              name="name"
+              value={form.name}
+              onChange={handleForm}
+              className="border-b border-border bg-transparent px-0 py-2 text-cream placeholder:text-text-muted focus:border-cream focus:outline-none"
+              placeholder="Your name"
+            />
           </div>
-        ) : (
-          <div>Submitted</div>
-        )}
+
+          <div className="flex flex-col gap-2">
+            <label htmlFor="email" className="caption text-text-muted">
+              Email <span className="text-accent-primary">*</span>
+            </label>
+            <input
+              type="email"
+              id="email"
+              name="email"
+              value={form.email}
+              onChange={handleForm}
+              className="border-b border-border bg-transparent px-0 py-2 text-cream placeholder:text-text-muted focus:border-cream focus:outline-none"
+              placeholder="you@example.com"
+            />
+          </div>
+
+          <div className="flex flex-col gap-2">
+            <label htmlFor="subject" className="caption text-text-muted">
+              Subject <span className="text-accent-primary">*</span>
+            </label>
+            <input
+              type="text"
+              id="subject"
+              name="subject"
+              value={form.subject}
+              onChange={handleForm}
+              className="border-b border-border bg-transparent px-0 py-2 text-cream placeholder:text-text-muted focus:border-cream focus:outline-none"
+              placeholder="What's this about?"
+            />
+          </div>
+
+          <div className="flex flex-col gap-2">
+            <label htmlFor="message" className="caption text-text-muted">
+              Message <span className="text-accent-primary">*</span>
+            </label>
+            <textarea
+              id="message"
+              name="message"
+              value={form.message}
+              onChange={handleForm}
+              rows={4}
+              className="resize-none border-b border-border bg-transparent px-0 py-2 text-cream placeholder:text-text-muted focus:border-cream focus:outline-none"
+              placeholder="Your message..."
+            />
+          </div>
+
+          <button
+            type="submit"
+            disabled={submitting}
+            className="btn-primary mt-4 disabled:cursor-not-allowed disabled:opacity-50"
+          >
+            {submitting ? 'Sending...' : 'Send message'}
+          </button>
+        </form>
       </div>
     </div>
   );

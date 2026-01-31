@@ -3,59 +3,276 @@
 @source "../../src/**/*.{js,ts,jsx,tsx}";
 
 @theme {
+  /* Base */
+  --color-base: #1A1A1A;
+  --color-base-light: #252525;
+
+  /* Accent 1 - Warm (Bauhaus terracotta) */
+  --color-accent-primary: #C4653A;
+  --color-accent-primary-light: #D97B52;
+
+  /* Accent 2 - Editorial cream */
+  --color-cream: #F5F0E8;
+  --color-cream-dark: #E8E0D4;
+
+  /* Accent 3 - Cool (subtle) */
+  --color-accent-secondary: #4A6670;
+
+  /* Functional */
+  --color-text-primary: #F5F0E8;
+  --color-text-muted: #8A8A8A;
+  --color-border: #333333;
+
+  /* Legacy colors (keeping for transition, can remove later) */
   --color-custom-light-pink: #F1C5B1;
-  --color-custom-yellow: #E3C732;
-  --color-custom-purple: #A45EDB;
+  --color-custom-yellow: #C4653A;
+  --color-custom-purple: #4A6670;
   --color-custom-green: #4AA573;
-  --color-custom-blue: #54C4E7;
-  --color-custom-white: #FEE9E1;
-  --color-custom-royal-blue: #124E78;
-  --color-custom-red: #ED2626;
-  --color-custom-black: #272727;
+  --color-custom-blue: #4A6670;
+  --color-custom-white: #F5F0E8;
+  --color-custom-royal-blue: #4A6670;
+  --color-custom-red: #C4653A;
+  --color-custom-black: #1A1A1A;
+
 }
 
+/* Typography scale using CSS variables */
+:root {
+  --font-display: var(--font-space-grotesk), 'Space Grotesk', sans-serif;
+  --font-body: 'CustomFont', 'Proxima Nova', sans-serif;
+}
+
+/* Font loading */
 @font-face {
   font-family: 'CustomFont';
   src: url('../../public/fonts/proximanova.otf') format('opentype');
   font-display: swap;
 }
+
+/* Base styles */
 body {
-  font-family: 'CustomFont', sans-serif;
+  font-family: var(--font-body);
+  background-color: var(--color-base);
+  color: var(--color-text-primary);
 }
 
+/* Typography */
 p {
-  font-size: medium;
-  color: white;
+  font-size: 1rem;
+  color: var(--color-text-primary);
+  line-height: 1.6;
 }
 
 h1 {
-  font-size: x-large;
-  color: white;
+  font-family: var(--font-display);
+  font-size: clamp(2.5rem, 6vw, 5rem);
+  font-weight: 700;
+  color: var(--color-cream);
+  letter-spacing: -0.02em;
+  line-height: 1.1;
 }
+
 h2 {
-  font-size: larger;
-  color: white;
+  font-family: var(--font-display);
+  font-size: clamp(1.5rem, 3vw, 2.5rem);
+  font-weight: 600;
+  color: var(--color-cream);
+  letter-spacing: -0.01em;
 }
+
 h3 {
-  font-size: large;
-  color: white;
+  font-family: var(--font-display);
+  font-size: 1.25rem;
+  font-weight: 500;
+  color: var(--color-cream);
 }
 
 h5 {
-  font-size: medium;
-  color: white;
+  font-size: 0.875rem;
+  color: var(--color-text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
 }
 
+/* Display typography utilities */
+.display-xl {
+  font-family: var(--font-display);
+  font-size: clamp(4rem, 10vw, 8rem);
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  line-height: 0.9;
+}
+
+.display-lg {
+  font-family: var(--font-display);
+  font-size: clamp(2.5rem, 6vw, 5rem);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  line-height: 1;
+}
+
+.caption {
+  font-size: 0.875rem;
+  color: var(--color-text-muted);
+  letter-spacing: 0.05em;
+}
+
+/* Link underline animation */
+.link-underline {
+  position: relative;
+  display: inline-block;
+}
+
+.link-underline::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 0;
+  height: 1px;
+  background-color: var(--color-accent-primary);
+  transition: width 0.3s ease;
+}
+
+.link-underline:hover::after {
+  width: 100%;
+}
+
+/* Section number styling */
+.section-number {
+  font-family: var(--font-display);
+  font-size: clamp(8rem, 20vw, 16rem);
+  font-weight: 700;
+  color: var(--color-border);
+  opacity: 0.3;
+  position: absolute;
+  line-height: 1;
+  pointer-events: none;
+  user-select: none;
+}
+
+/* Flat design - remove shadows */
+.flat-border {
+  border: 1px solid var(--color-border);
+}
+
+/* Geometric button styles */
+.btn-primary {
+  background-color: transparent;
+  border: 1px solid var(--color-cream);
+  color: var(--color-cream);
+  padding: 0.75rem 1.5rem;
+  font-family: var(--font-display);
+  font-weight: 500;
+  transition: all 0.3s ease;
+}
+
+.btn-primary:hover {
+  background-color: var(--color-cream);
+  color: var(--color-base);
+}
+
+/* ==========================================
+   SEQUENCER STYLES - Minimal custom CSS
+   Most styling via Tailwind classes
+   ========================================== */
+
+/* Color palette for each row */
+:root {
+  --seq-amber: #F59E0B;
+  --seq-coral: #F97316;
+  --seq-teal: #14B8A6;
+  --seq-violet: #A78BFA;
+}
+
+/* Row-specific active pad colors - no external glow, just internal brightness */
+.seq-pad.active[data-row="0"] {
+  background: var(--seq-amber);
+  border-color: var(--seq-amber);
+}
+.seq-pad.active[data-row="1"] {
+  background: var(--seq-coral);
+  border-color: var(--seq-coral);
+}
+.seq-pad.active[data-row="2"] {
+  background: var(--seq-teal);
+  border-color: var(--seq-teal);
+}
+.seq-pad.active[data-row="3"] {
+  background: var(--seq-violet);
+  border-color: var(--seq-violet);
+}
+
+/* Current step ring */
+.seq-pad.current-step {
+  ring: 2px solid rgba(255, 255, 255, 0.4);
+  box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.4);
+}
+
+/* Row label colors */
+.seq-label[data-row="0"] { color: var(--seq-amber); }
+.seq-label[data-row="1"] { color: var(--seq-coral); }
+.seq-label[data-row="2"] { color: var(--seq-teal); }
+.seq-label[data-row="3"] { color: var(--seq-violet); }
+
+/* Hide scrollbar but keep functionality */
+.seq-scroll-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+.seq-scroll-hide::-webkit-scrollbar {
+  display: none;
+}
+
+/* BPM input - hide spinners */
+.seq-bpm-input::-webkit-outer-spin-button,
+.seq-bpm-input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+.seq-bpm-input[type=number] {
+  -moz-appearance: textfield;
+}
+
+/* Scroll reveal animation */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-in-up {
+  animation: fadeInUp 0.6s ease forwards;
+}
+
+/* Mobile navigation pill */
+.nav-pill {
+  background: rgba(26, 26, 26, 0.8);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid var(--color-border);
+}
+
+/* Vertical text for desktop nav */
+.vertical-text {
+  writing-mode: vertical-rl;
+  text-orientation: mixed;
+}
+
+/* Remove old shadow classes */
 .buttonShadow {
-  box-shadow: rgba(0, 0, 0, 0.15) 0px 5px 15px 0px;
+  /* Deprecated - flat design */
 }
 
 .akaiShadow {
-  box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px,
-    rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
+  /* Deprecated - flat design */
 }
 
 .tileShadow {
-  box-shadow: rgba(91, 87, 87, 0.25) 0px 6px 12px -2px,
-    rgba(74, 74, 74, 0.3) 0px 3px 7px -3px;
+  /* Deprecated - flat design */
 }

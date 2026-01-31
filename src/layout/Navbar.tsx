@@ -1,110 +1,154 @@
-import { motion, useScroll, useSpring } from 'framer-motion';
-import Routes from '../../types/types';
-import SomethingWeird from '@/components/SomethingWeird';
+import { useEffect, useState } from 'react';
 import Link from 'next/link';
-import NavProgressBar from '@/components/animation/NavProgressBar';
-import usePageRefs from 'util/pageRef';
-import { useEffect, useRef } from 'react';
+import Image from 'next/image';
+import MagneticElement from '@/components/MagneticElement';
 
 interface NavbarProps {
-  handleRoute: Routes['handleRoute'];
-  pageRef: React.RefObject<HTMLDivElement | null>;
-  frontpageRef: React.RefObject<HTMLDivElement | null>;
   aboutRef: React.RefObject<HTMLDivElement | null>;
   workRef: React.RefObject<HTMLDivElement | null>;
   contactRef: React.RefObject<HTMLDivElement | null>;
   beatRef: React.RefObject<HTMLDivElement | null>;
 }
 
-function Navbar({
-  handleRoute,
-  pageRef,
-  frontpageRef,
-  aboutRef,
-  workRef,
-  contactRef,
-  beatRef,
-}: NavbarProps) {
-  const navRef = useRef<HTMLDivElement>(null);
+const navItems = [
+  { id: 'about', label: 'ABOUT', number: '01' },
+  { id: 'work', label: 'WORK', number: '02' },
+  { id: 'contact', label: 'CONTACT', number: '03' },
+  { id: 'beat', label: 'BEATS', number: '04' },
+];
+
+function Navbar({ aboutRef, workRef, contactRef, beatRef }: NavbarProps) {
+  const [activeSection, setActiveSection] = useState<string>('');
 
   useEffect(() => {
+    const refs = [
+      { id: 'about', ref: aboutRef },
+      { id: 'work', ref: workRef },
+      { id: 'contact', ref: contactRef },
+      { id: 'beat', ref: beatRef },
+    ];
+
     const handleScroll = () => {
-      if (navRef.current) {
-        const scrollHeight = document.documentElement.scrollHeight;
-        const scrollTop =
-          document.documentElement.scrollTop || document.body.scrollTop;
-        const windowHeight = window.innerHeight;
-        const totalScrollHeight = scrollHeight - windowHeight;
-        const scrollRatio = scrollTop / totalScrollHeight;
-        navRef.current.scrollLeft =
-          scrollRatio *
-          (navRef.current.scrollWidth - navRef.current.clientWidth);
+      const scrollPosition = window.scrollY + window.innerHeight / 3;
+
+      for (const item of refs) {
+        if (item.ref.current) {
+          const { offsetTop, offsetHeight } = item.ref.current;
+          if (
+            scrollPosition >= offsetTop &&
+            scrollPosition < offsetTop + offsetHeight
+          ) {
+            setActiveSection(item.id);
+            break;
+          }
+        }
       }
     };
 
     window.addEventListener('scroll', handleScroll);
+    handleScroll();
 
     return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
+  }, [aboutRef, workRef, contactRef, beatRef]);
 
   return (
-    <nav
-      ref={navRef}
-      className="fixed top-0 z-50 flex h-fit w-full gap-5 overflow-x-scroll bg-custom-black p-2 lg:h-full lg:w-1/6 lg:flex-col lg:gap-4 lg:overflow-x-auto lg:bg-opacity-10"
-    >
-      <div className="flex items-center gap-2 lg:flex-col lg:items-start lg:py-16">
-        <Link href="/">
-          <h3 className="font-extrabold text-custom-white">WELCOME!</h3>
-          <p className="whitespace-nowrap font-semibold tracking-tight text-custom-white">
-            Take a look around.
-          </p>
-        </Link>
-        <SomethingWeird />
-      </div>
+    <>
+      {/* Desktop Navigation - Minimal Vertical Strip */}
+      <nav className="fixed left-0 top-0 z-50 hidden h-full w-16 flex-col items-center justify-between border-r border-border bg-base py-8 lg:flex xl:w-20">
+        {/* Logo */}
+        <MagneticElement className="cursor-pointer" strength={0.4}>
+          <Link href="/" className="block transition-opacity hover:opacity-80">
+            <Image
+              src="/favicon.ico"
+              alt="Samuel Ho"
+              width={36}
+              height={36}
+              className="h-9 w-9 xl:h-10 xl:w-10"
+              priority
+            />
+          </Link>
+        </MagneticElement>
 
-      <ul className="flex h-fit w-full justify-between gap-4 lg:flex-col">
-        <li className="w-full min-w-[10rem] max-w-[15rem]">
+        {/* Vertical Navigation */}
+        <ul className="flex flex-col items-center gap-8">
+          {navItems.map((item) => (
+            <li key={item.id}>
+              <Link
+                href={`/#${item.id}`}
+                className="group relative flex flex-col items-center"
+              >
+                {/* Active indicator line */}
+                <span
+                  className={`absolute -left-4 h-full w-[2px] transition-all duration-300 xl:-left-6 ${
+                    activeSection === item.id
+                      ? 'bg-accent-primary'
+                      : 'bg-transparent'
+                  }`}
+                />
+                {/* Number */}
+                <span
+                  className={`text-xs transition-colors duration-300 ${
+                    activeSection === item.id
+                      ? 'text-accent-primary'
+                      : 'text-text-muted group-hover:text-cream'
+                  }`}
+                >
+                  {item.number}
+                </span>
+                {/* Vertical label */}
+                <span
+                  className={`vertical-text mt-2 text-xs font-medium tracking-widest transition-colors duration-300 ${
+                    activeSection === item.id
+                      ? 'text-cream'
+                      : 'text-text-muted group-hover:text-cream'
+                  }`}
+                >
+                  {item.label}
+                </span>
+              </Link>
+            </li>
+          ))}
+        </ul>
+
+        {/* Bottom spacer */}
+        <div className="h-8" />
+      </nav>
+
+      {/* Mobile Navigation - Bottom Pill */}
+      <nav className="nav-pill fixed bottom-6 left-1/2 z-50 flex -translate-x-1/2 items-center gap-1 rounded-full px-2 py-2 lg:hidden">
+        {/* Logo */}
+        <Link
+          href="/"
+          className="flex h-10 w-10 items-center justify-center rounded-full border border-border"
+        >
+          <Image
+            src="/favicon.ico"
+            alt="Samuel Ho"
+            width={24}
+            height={24}
+            className="h-6 w-6"
+          />
+        </Link>
+
+        {/* Divider */}
+        <div className="mx-2 h-6 w-px bg-border" />
+
+        {/* Navigation items */}
+        {navItems.map((item) => (
           <Link
-            href="/#about"
-            className="relative flex h-16 w-full flex-col justify-between rounded-lg bg-custom-red px-2"
+            key={item.id}
+            href={`/#${item.id}`}
+            className={`flex h-10 w-10 items-center justify-center rounded-full transition-all duration-300 ${
+              activeSection === item.id
+                ? 'bg-accent-primary text-cream'
+                : 'text-text-muted hover:text-cream'
+            }`}
           >
-            <NavProgressBar itemRef={aboutRef} />
-            <p className="text-sm">01</p>
-            <h3 className="whitespace-nowrap font-semibold">ABOUT ME</h3>
+            <span className="text-xs font-semibold">{item.number}</span>
           </Link>
-        </li>
-        <li className="w-full min-w-[10rem] max-w-[15rem]">
-          <Link
-            href="/#work"
-            className="relative flex h-16 w-full flex-col justify-between rounded-lg bg-custom-royal-blue px-2"
-          >
-            <NavProgressBar itemRef={workRef} />
-            <p className="text-sm">02</p>
-            <h3 className="whitespace-nowrap font-semibold">WORK</h3>
-          </Link>
-        </li>
-        <li className="w-full min-w-[10rem] max-w-[15rem]">
-          <Link
-            href="/#contact"
-            className="relative flex h-16 w-full flex-col justify-between rounded-lg bg-custom-blue px-2"
-          >
-            <NavProgressBar itemRef={contactRef} />
-            <p className="text-sm">03</p>
-            <h3 className="whitespace-nowrap font-semibold">CONTACT</h3>
-          </Link>
-        </li>
-        <li className="w-full min-w-[10rem] max-w-[15rem]">
-          <Link
-            href="/#beat"
-            className="relative flex h-16 w-full flex-col justify-between rounded-lg bg-custom-purple px-2"
-          >
-            <NavProgressBar itemRef={beatRef} />
-            <p className="text-sm">04</p>
-            <h3 className="whitespace-nowrap font-semibold">MAKE A BEAT</h3>
-          </Link>
-        </li>
-      </ul>
-    </nav>
+        ))}
+      </nav>
+    </>
   );
 }
 
