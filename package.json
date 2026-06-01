@@ -6,30 +6,30 @@
     "dev": "next dev --turbopack",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "eslint ."
   },
   "dependencies": {
-    "framer-motion": "^12.4.7",
-    "next": "^15.1.7",
-    "nodemailer": "^6.10.0",
-    "react": "^19.0.0",
-    "react-dom": "^19.0.0",
-    "react-icons": "^5.4.0",
-    "tone": "14.7.77"
+    "framer-motion": "^12.40.0",
+    "next": "^16.2.6",
+    "nodemailer": "^8.0.10",
+    "react": "^19.2.6",
+    "react-dom": "^19.2.6",
+    "react-icons": "^5.6.0",
+    "tone": "^15.1.22"
   },
   "devDependencies": {
-    "@tailwindcss/postcss": "^4.0.0",
-    "@types/node": "^22.13.0",
-    "@types/nodemailer": "^6.4.17",
-    "@types/react": "^19.0.0",
-    "@types/react-dom": "^19.0.0",
-    "@vercel/analytics": "^1.5.0",
-    "eslint": "^9.19.0",
-    "eslint-config-next": "^15.1.7",
-    "postcss": "^8.5.0",
-    "prettier": "^3.4.0",
-    "prettier-plugin-tailwindcss": "^0.6.0",
-    "tailwindcss": "^4.0.0",
-    "typescript": "^5.7.0"
+    "@tailwindcss/postcss": "^4.3.0",
+    "@types/node": "^25.9.1",
+    "@types/nodemailer": "^8.0.0",
+    "@types/react": "^19.2.15",
+    "@types/react-dom": "^19.2.3",
+    "@vercel/analytics": "^2.0.1",
+    "eslint": "^9.39.4",
+    "eslint-config-next": "^16.2.6",
+    "postcss": "^8.5.15",
+    "prettier": "^3.8.3",
+    "prettier-plugin-tailwindcss": "^0.8.0",
+    "tailwindcss": "^4.3.0",
+    "typescript": "^6.0.3"
   }
 }
