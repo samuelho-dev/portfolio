@@ -29,7 +29,7 @@ env:
 jobs:
   deploy-production:
     name: Deploy → Production
-    runs-on: ubuntu-latest
+    runs-on: homelab-runners
     environment:
       name: production
       url: ${{ steps.deploy.outputs.url }}
@@ -52,7 +52,7 @@ jobs:
 
   deploy-staging:
     name: Deploy → Staging
-    runs-on: ubuntu-latest
+    runs-on: homelab-runners
     environment:
       name: staging
       url: ${{ steps.deploy.outputs.url }}
